@@ -1,17 +1,17 @@
-name: Receive Dispatch from fake-app
+name: Receive Analysis from fake-app
 
 on:
   repository_dispatch:
-    types: [app-pr-merged]
+    types: [app-pr-analyzed]
 
 jobs:
   handle:
     runs-on: ubuntu-latest
     steps:
-      - name: Print received message
-        run: echo "Received ${{ github.event.client_payload.message }}"
-
-
-
-
-        
+      - name: Print received payload
+        run: |
+          echo "Decision:    ${{ github.event.client_payload.decision }}"
+          echo "PR Number:   ${{ github.event.client_payload.pr_number }}"
+          echo "PR Title:    ${{ github.event.client_payload.pr_title }}"
+          echo "PR URL:      ${{ github.event.client_payload.pr_url }}"
+          echo "Explanation: ${{ github.event.client_payload.explanation }}"
