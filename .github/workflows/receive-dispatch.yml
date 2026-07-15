@@ -1,0 +1,17 @@
+name: Receive Dispatch from fake-app
+
+on:
+  repository_dispatch:
+    types: [app-pr-merged]
+
+jobs:
+  handle:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print received message
+        run: echo "Received: ${{ github.event.client_payload.message }}"
+
+
+
+
+        
